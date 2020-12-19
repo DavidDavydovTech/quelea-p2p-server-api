@@ -7,8 +7,10 @@
   "author": "David J. Davydov <davydovjd611@gmail.com>",
   "license": "MIT",
   "dependencies": {
+    "@graphql-tools/stitch": "^7.1.6",
     "express-graphql": "^0.12.0",
     "graphql": "^15.4.0",
+    "graphql-tools": "^7.0.2",
     "nano-sql": "^1.8.5"
   }
 }
