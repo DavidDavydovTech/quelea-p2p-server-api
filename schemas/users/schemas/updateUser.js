@@ -1,9 +1,9 @@
 const nsql = require('nano-sql');
 const { makeExecutableSchema } = require('graphql-tools');
 const { 
-  wrappedResolver: placeholderResolver,  
-  schema: placeholderSchema,
-} = require('../../../lib/_sticherPlaceholder');
+  placeholderSchema,
+  placeholderResolver,
+} = require('../../../lib/placeholderQuery');
 
 
 const updateUser = makeExecutableSchema({
