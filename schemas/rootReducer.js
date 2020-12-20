@@ -1,18 +1,22 @@
 const fs = require('fs');
 const path = require('path');
 const { stitchSchemas } = require('graphql-tools');
-const isDir = require('../utils/isDir');
 
 module.exports = stitchSchemas({
   subschemas: (() => {
-    const schemaPaths = path.join(__dirname);
-    fs.readdirSync(schemaPaths).map(schemaName => {
-      const schemaGroupPath = path.join(schemaPaths, schemaName, `${schemaName}Reducer.js`);
-      const hasSchemaReducer = fs.existsSync(schemaGroupPath);
-      if (hasSchemaReducer === true) {
-        return require(schemaGroupPath);
+    const folder = path.join(__dirname);
+    const folderContents = fs.readdirSync(folder);
+    const res = [];
+
+    for (let contentName of folderContents) {
+      const pathToSchema = path.join(folder, contentName, `${contentName}Reducer.js`);
+      const schemaDoesExist = fs.existsSync(pathToSchema);
+      if (schemaDoesExist) {
+        res.push(require(pathToSchema));
       }
-    });
+    }
+    
+    return res
   })(),
 });
 
