@@ -1,5 +1,9 @@
 const nsql = require('nano-sql');
 const { makeExecutableSchema } = require('graphql-tools');
+const { 
+  wrappedResolver: placeholderResolver,  
+  schema: placeholderSchema,
+} = require('../../../lib/_sticherPlaceholder');
 
 
 const updateUser = makeExecutableSchema({
@@ -14,6 +18,8 @@ const updateUser = makeExecutableSchema({
         birthDay: Int
         ): Boolean
     }
+    
+    ${placeholderSchema}
   `,
   resolvers: {
     Mutation: {
@@ -28,8 +34,8 @@ const updateUser = makeExecutableSchema({
         }) => {
           return "You updated a user!"
       },
-    }
-
+    },
+    ...placeholderResolver,
   }
 })
 
