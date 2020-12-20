@@ -16,7 +16,7 @@ const updateUser = makeExecutableSchema({
         lastName: String, 
         birthMonth: Int,
         birthDay: Int
-        ): Boolean
+        ): String
     }
     
     ${placeholderSchema}
