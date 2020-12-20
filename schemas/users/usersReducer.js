@@ -3,11 +3,16 @@ const path = require('path');
 const { stitchSchemas } = require('graphql-tools');
 
 const userSchemas = (() => {
-  const schemaPaths = path.join(__dirname, 'schemas');
-  fs.readdirSync(schemaPaths).map(schema => {
-    const schemaPath = path.join(__dirname, 'schemas', schema)
-    return require(schemaPath);
-  });
+  const folder = path.join(__dirname, 'schemas');
+  const folderContents = fs.readdirSync(folder);
+  const res = [];
+
+  for (let contentName of folderContents) {
+    const contentPath = path.join(folder, contentName);
+    res.push(require(contentPath))
+  }
+  
+  return res;
 })();
 
 module.exports = stitchSchemas({
