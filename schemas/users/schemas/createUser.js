@@ -8,7 +8,7 @@ const createUser = makeExecutableSchema({
       createUser( 
         email: String!, 
         firstName: String!, 
-        middleName: String!, 
+        middleName: String, 
         lastName: String!, 
         birthMonth: Int, 
         birthDay: Int 
